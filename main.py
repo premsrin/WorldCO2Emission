@@ -96,5 +96,6 @@ with tab4:
                         range_color=(0,25),
                         color_continuous_scale=px.colors.sequential.Reds)
     st.plotly_chart(fig, use_container_width=True)
+    
 
 
