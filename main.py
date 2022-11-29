@@ -25,16 +25,6 @@ def get_co2():
 #st.set_page_config(layout = "wide")
 
 st.markdown("# World Co2 Emissions")
-image = Image.open('facecover.jpg')
-col1, col2 = st.columns([3,1])
-with col1:
-    st.write("Carbon dioxide(CO2) emissions are the primary driver of global climate change. It’s widely recognised that to avoid the worst impacts of climate change, the world needs to urgently reduce emissions")
-    #st.image(image, caption='World Co2 Emissions Analysis', width= 500)
-
-with col2:
-    st.write("")
-    st.image(image, caption='World Co2 Emissions', width= 300)
-
 #displaying the image on streamlit app
 
 
@@ -54,7 +44,18 @@ df["density(km2)"] = df["density(km2)"].str.replace("/km²", "", regex=True)
 df["density(km2)"] = df["density(km2)"].str.replace(',','.', regex=True)
 df["density(km2)"] = df["density(km2)"].astype(float)
 
-tab1, tab2, tab3, tab4 = st.tabs(['World Yearly CO2 Emission','Top 20 Countries','Bottom 20 countries','Map'])
+tab0, tab1, tab2, tab3, tab4 = st.tabs(['Co2 Emissions', 'World Yearly CO2 Emission','Top 20 Countries','Bottom 20 countries','Map'])
+
+with tab0:
+    image = Image.open('facecover.jpg')
+    col1, col2 = st.columns([3,1])
+    with col1:
+        st.write("Carbon dioxide(CO2) emissions are the primary driver of global climate change. It’s widely recognised that to avoid the worst impacts of climate change, the world needs to urgently reduce emissions")
+        #st.image(image, caption='World Co2 Emissions Analysis', width= 500)
+
+    with col2:
+        st.write("")
+        st.image(image, caption='World Co2 Emissions', width= 300)
 
 with tab1:
     yearly_world_emission_df = df.groupby("year").sum()
@@ -75,7 +76,6 @@ with tab2:
     st.pyplot(fig)
 
 with tab3:
-    st.write(df.head(10))
     bottom20_emission_df = df[(df.year > 2011) & (df["year"] < 2023)].groupby("country")[["co2_emission_tons"]].sum().sort_values(by=["co2_emission_tons"]).head(20)
     fig = plt.figure(figsize=(12, 8))
     sns.set_style("whitegrid")
@@ -90,12 +90,15 @@ with tab4:
     # st.write(df_co2.head(10))
     #st.write(df_co2.head(10))
     #st.write(df_co2.columns.tolist())
-    select_year = st.slider("Select year to display data from:", df_co2['year'].min(),df_co2['year'].max(),df_co2['year'].max(),10)
+    st.write("")
+    st.write("")
+    
+    select_year = st.slider("Select year to display data from:", int(df_co2['year'].min()),int(df_co2['year'].max()),int(df_co2['year'].max()),10)
     fig = px.choropleth(df_co2[df_co2['year']==select_year], locations="iso_code",
                         color="co2_per_capita",
                         hover_name="country",
                         range_color=(0,25),
                         color_continuous_scale=px.colors.sequential.Reds)
     st.plotly_chart(fig, use_container_width=True)
-    
+
 
