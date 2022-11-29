@@ -75,6 +75,7 @@ with tab2:
     st.pyplot(fig)
 
 with tab3:
+    st.write(df.head(10))
     bottom20_emission_df = df[(df.year > 2011) & (df["year"] < 2023)].groupby("country")[["co2_emission_tons"]].sum().sort_values(by=["co2_emission_tons"]).head(20)
     fig = plt.figure(figsize=(12, 8))
     sns.set_style("whitegrid")
