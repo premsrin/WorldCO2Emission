@@ -42,7 +42,7 @@ data,
 x='year',
 y='co2_emission_tons',
 color='country',
-height= 600,
+height= 800,
 width = 400,
 title='Time progression for the selected countries'
 )
