@@ -42,8 +42,8 @@ data,
 x='year',
 y='co2_emission_tons',
 color='country',
-height= 800,
-width = 400,
+height= 600,
+width = 800,
 title='Time progression for the selected countries'
 )
 st.plotly_chart(fig, use_container_width=True)
