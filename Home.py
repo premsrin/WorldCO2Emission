@@ -95,7 +95,7 @@ with tab1:
         #st.write("World Co2 Emissions")
         st.write("")
         st.markdown("<h5 style='text-align: center; color: white;'>World Co2 Emissions</h5>", unsafe_allow_html=True)        
-        st.image(image, width= 450)
+        st.image(image, width= 350)
 
 with tab3:
     col1, col2 = st.columns([1,1])
