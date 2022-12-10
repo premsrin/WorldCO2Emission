@@ -2,6 +2,9 @@
 Name: Premnath Srinivasan
 <br />
 Streamlit App: https://premsrin-worldco2emissions.streamlit.app/
+<br />
+Data Source: https://www.kaggle.com/datasets/srikantsahu/co2-and-ghg-emission-data
+<br />
 
 Global warming is the current rise in temperature of the air and ocean. The present global warming is mostly because of people burning things, like gasoline for cars and natural gas to keep houses warm. But the heat from the burning itself only makes the world a tiny bit warmer: it is the carbon dioxide from the burning which is the biggest part of the problem. Among greenhouse gases, the increase of carbon dioxide in the atmosphere is the main cause of global warming.
 
