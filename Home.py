@@ -210,7 +210,7 @@ __Hover over any of the charts to see more detail__
                 color="co2_per_capita", 
                 animation_frame="year",
                 range_color=(0, 25),
-                title='World C02 Emissions',
+                title='World C02 Emissions[with Animation]',
                 height=700,width = 700,
                 color_continuous_scale=px.colors.sequential.Reds
                 )
