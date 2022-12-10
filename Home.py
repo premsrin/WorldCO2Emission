@@ -96,7 +96,7 @@ with tab1:
         #st.write("World Co2 Emissions")
         st.write("")
         st.markdown("<h5 style='text-align: center; color: white;'>World Co2 Emissions</h5>", unsafe_allow_html=True)        
-        st.image(image, width= 350)
+        st.image(image, width= 500)
 
 with tab3:
     col1, col2 = st.columns([1,1])
@@ -173,7 +173,7 @@ with tab2:
         # st.plotly_chart(fig, use_container_width=True)
         # st.write("The plot above shows the 20 countries in the world with the least co2 emission in the world. Comoros has the least c02 emission in the world for the last decade.")
 
-        fig = plt.figure(figsize=(10, 8))
+        fig = plt.figure(figsize=(8, 6))
         sns.set_style("whitegrid")
         sns.barplot(data=top20_emission_df, x="co2_emission_tons", y=bottom20_emission_df.index, palette="bright")
         plt.title("Bottom 20 CO2 emitting countries from 2012 - 2022", fontsize=19,fontweight="bold",pad=6)
@@ -208,7 +208,7 @@ __Hover over any of the charts to see more detail__
     df_co2 = df_co2.sort_values('year', ascending=True)
     df_co2 = df_co2[df_co2['year'] > 1900]
     fig = px.choropleth(df_co2,
-                locations = 'iso_code',
+                locations = 'iso_code',hover_name="country",
                 color="co2_per_capita", 
                 animation_frame="year",
                 range_color=(0, 25),
