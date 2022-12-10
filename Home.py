@@ -187,8 +187,6 @@ with tab4:
     # st.write(df_co2.head(10))
     #st.write(df_co2.head(10))
     #st.write(df_co2.columns.tolist())
-    st.write("")
-    st.write("")
     st.write("""
 The graphs below show the CO2 emissions per capita for the entire world and individual countries over time.
 __Hover over any of the charts to see more detail__
