@@ -4,7 +4,7 @@ Global warming is the current rise in temperature of the air and ocean. The pres
 
 Among greenhouse gases, the increase of carbon dioxide in the atmosphere is the main cause of global warming. As you see below, CO2 constitutes 65% of the Global Greenhouse house emissions.
 
-![image](https://user-images.githubusercontent.com/116606008/206875715-f6f08977-94fb-40b6-be25-d0f48ae590df.png)
+![image](https://user-images.githubusercontent.com/116606008/206875995-a8cf4da9-1fa1-4b86-9ff4-08173efb47c1.png)
 
 These are the Top 20 contributing countries:
 ![image](https://user-images.githubusercontent.com/116606008/206875721-6f5d7aa1-947d-443c-85fe-3143d7c7b154.png)
