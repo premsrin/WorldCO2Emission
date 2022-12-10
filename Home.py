@@ -173,7 +173,7 @@ with tab2:
         # st.plotly_chart(fig, use_container_width=True)
         # st.write("The plot above shows the 20 countries in the world with the least co2 emission in the world. Comoros has the least c02 emission in the world for the last decade.")
 
-        fig = plt.figure(figsize=(8, 6))
+        fig = plt.figure(figsize=(9, 7))
         sns.set_style("whitegrid")
         sns.barplot(data=top20_emission_df, x="co2_emission_tons", y=bottom20_emission_df.index, palette="bright")
         plt.title("Bottom 20 CO2 emitting countries from 2012 - 2022", fontsize=19,fontweight="bold",pad=6)
