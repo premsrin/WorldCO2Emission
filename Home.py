@@ -6,6 +6,7 @@ import altair as alt
 import seaborn as sns # visualization
 from io import BytesIO
 import numpy as np
+import time
 
 from PIL import Image
 from skimpy import clean_columns # clean column names
@@ -134,34 +135,52 @@ with tab2:
     top20_emission_df = df[(df.year > 2011) & (df["year"] < 2023)].groupby("country")[["co2_emission_tons"]].sum().sort_values(by=["co2_emission_tons"], ascending=False).head(20)
     col1, col2 = st.columns([1,1])
     with col1:
-        fig = px.bar(
-        top20_emission_df,
-        x="co2_emission_tons",
-        y=top20_emission_df.index,
-        height= 500,
-        width = 200,
-        )
-        # fig.update_layout( 'plotly_dark')
-        fig.update_layout(yaxis={'categoryorder':'total ascending'})
-        st.plotly_chart(fig, use_container_width=True)
+        # fig = px.bar(
+        # top20_emission_df,
+        # x="co2_emission_tons",
+        # y=top20_emission_df.index,
+        # height= 500,
+        # width = 200,
+        # )
+        # # fig.update_layout( 'plotly_dark')
+        # fig.update_layout(yaxis={'categoryorder':'total ascending'})
+        # st.plotly_chart(fig, use_container_width=True)
+        # 
+
+        fig= plt.figure(figsize=(8, 6))
+        sns.set_style("whitegrid")
+        sns.barplot(data=top20_emission_df, x="co2_emission_tons", y=top20_emission_df.index, palette="bright")
+        plt.title("Top 20 CO2 emitting countries from 2012 - 2022",fontsize=19,fontweight="bold",pad=6 )
+        plt.xlabel("CO2 emission in tons")
+        plt.ylabel("Countries");
+        st.pyplot(fig)
         st.write("These countries have emitted the highest amount of co2 in the last decade. United States is the largest emitter of co2 in the world for the last decade.")
 
     with col2:
         bottom20_emission_df = df[(df.year > 2011) & (df["year"] < 2023)].groupby("country")[["co2_emission_tons"]].sum().sort_values(by=["co2_emission_tons"],ascending=True).head(20)
         #bottom20_emission_df = pd.concat([top20_emission_df.head(1), bottom20_df])
         #st.write(bottom20_emission_df.head())
-        fig = px.bar(
-        bottom20_emission_df,
-        x="co2_emission_tons",
-        y=bottom20_emission_df.index,
-        height= 500,
-        width = 200,
-        )
+        # fig = px.bar(
+        # bottom20_emission_df,
+        # x="co2_emission_tons",
+        # y=bottom20_emission_df.index,
+        # height= 500,
+        # width = 200,
+        # )
 
-            # fig.update_layout( 'plotly_dark')
-        fig.update_layout(yaxis={'categoryorder':'total ascending'})
-        st.plotly_chart(fig, use_container_width=True)
-        st.write("The plot above shows the 20 countries in the world with the least co2 emission in the world. Antartica has the least c02 emission in the world for the last decade.")
+        #     # fig.update_layout( 'plotly_dark')
+        # fig.update_layout(yaxis={'categoryorder':'total ascending'})
+        # st.plotly_chart(fig, use_container_width=True)
+        # st.write("The plot above shows the 20 countries in the world with the least co2 emission in the world. Comoros has the least c02 emission in the world for the last decade.")
+
+        fig = plt.figure(figsize=(10, 8))
+        sns.set_style("whitegrid")
+        sns.barplot(data=top20_emission_df, x="co2_emission_tons", y=bottom20_emission_df.index, palette="bright")
+        plt.title("Bottom 20 CO2 emitting countries from 2012 - 2022", fontsize=19,fontweight="bold",pad=6)
+        plt.xlabel("CO2 emission in tons")
+        plt.ylabel("Countries");
+        st.pyplot(fig)
+        st.write("The plot above shows the 20 countries in the world with the least co2 emission in the world. Comoros has the least c02 emission in the world for the last decade.")
 
 with tab4:
     df_co2= get_co2_data_with_loc()
@@ -175,14 +194,26 @@ The graphs below show the CO2 emissions per capita for the entire world and indi
 __Hover over any of the charts to see more detail__
 ---
 """)
-    select_year = st.slider("Select year to display data from:", int(df_co2['year'].min()),int(df_co2['year'].max()),2010,10)
-
-    fig = px.choropleth(df_co2[df_co2['year']==select_year], locations="iso_code",
-                        color="co2_per_capita",
-                        hover_name="country",
-                        height= 700,
-                        width = 700,
-                        range_color=(0,25),
-                        color_continuous_scale=px.colors.sequential.Reds)
-    st.plotly_chart(fig, use_container_width=True)
+    # select_year = st.slider("Select year to display data from:", int(df_co2['year'].min()),int(df_co2['year'].max()),2010,10)
+    # fig = px.choropleth(df_co2[df_co2['year']==select_year], locations="iso_code",
+    #                     color="co2_per_capita",
+    #                     hover_name="country",
+    #                     height= 700,
+    #                     width = 700,
+    #                     range_color=(0,25),
+    #                     color_continuous_scale=px.colors.sequential.Reds)
+    # st.plotly_chart(fig, use_container_width=True)
+    select_year = 2020
     
+    df_co2 = df_co2.sort_values('year', ascending=True)
+    df_co2 = df_co2[df_co2['year'] > 1900]
+    fig = px.choropleth(df_co2,
+                locations = 'iso_code',
+                color="co2_per_capita", 
+                animation_frame="year",
+                range_color=(0, 25),
+                title='World C02 Emissions',
+                height=700,width = 700,
+                color_continuous_scale=px.colors.sequential.Reds
+                )
+    st.plotly_chart(fig)
